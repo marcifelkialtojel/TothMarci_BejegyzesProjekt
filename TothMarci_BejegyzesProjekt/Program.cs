@@ -10,6 +10,7 @@ namespace TothMarci_BejegyzesProjekt
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
