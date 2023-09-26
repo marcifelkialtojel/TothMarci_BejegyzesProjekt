@@ -89,24 +89,51 @@ namespace TothMarci_BejegyzesProjekt
             Console.WriteLine(like);
         }
 
-        static void Tobbmint30()
+        static void TobbMint30()
         {
-            bool yn = true;
+            bool yn = false;
             foreach (var item in bejegyzes)
             {
                 if (item.Likeok > 35)
                 {
                     yn = true;
-                    Console.WriteLine("Van olyan bejegyzés ami több likeot kapott mint 35!");
-                    break;
+                }    
+                if (yn == false)
+                {
+                    Console.WriteLine("Nincs olyan bejegyzés ami több likeot kapott mint 35!");
                 }
                 else
                 {
-                    yn = false;
-                    Console.WriteLine("Nincs olyan bejegyzés ami több likeot kapott mint 35!");
-                    break;
+                    Console.WriteLine("Van olyan bejegyzés ami több likeot kapott mint 35!");
                 }
             }
+        }
+        static void KevesebbMint15()
+        {
+            int num = 0;
+            foreach (var item in bejegyzes)
+            {
+                if (item.Likeok < 15)
+                {
+                    num++;
+                }
+            }
+            Console.WriteLine(num + "db bejegyzés rendelkezik kevesebb mint 15 like-al.");
+        }
+
+        static void RendEsKi()
+        {
+            List<Bejegyzes> rendezettLista = bejegyzes.OrderByDescending(o => o.Likeok).ToList();
+            foreach (var item in rendezettLista)
+            {
+                Console.WriteLine(item);
+            }
+            StreamWriter sw = new StreamWriter("bejegyzesek_rendezett.txt");
+            for (int i = 0; i < rendezettLista.Count; i++)
+            {
+                sw.WriteLine($"{rendezettLista[i].Szerzo},{rendezettLista[i].Tartalom},{rendezettLista[i].Letrejott},{rendezettLista[i].Szerkesztve},{rendezettLista[i].Likeok}");
+            }
+            sw.Close();
         }
 
         static void Main(string[] args)
@@ -125,7 +152,9 @@ namespace TothMarci_BejegyzesProjekt
             TartalomModify();
             ListaT();
             MostLiked();
-            Tobbmint30();
+            TobbMint30();
+            KevesebbMint15();
+            RendEsKi();
 
 
             //slattttt!!
