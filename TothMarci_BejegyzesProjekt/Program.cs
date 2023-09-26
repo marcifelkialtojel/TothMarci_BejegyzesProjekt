@@ -70,7 +70,7 @@ namespace TothMarci_BejegyzesProjekt
         }
         static void TartalomModify()
         {
-            Console.WriteLine("Add meg a módosítani kívánt tartalmat: ");
+            Console.WriteLine("Melyik tartalmat szeretnéd módosítani? ");
             string modTartalom = Console.ReadLine();
             bejegyzes[2].Tartalom = modTartalom;
             Console.WriteLine(bejegyzes[2]);
@@ -89,6 +89,26 @@ namespace TothMarci_BejegyzesProjekt
             Console.WriteLine(like);
         }
 
+        static void Tobbmint30()
+        {
+            bool yn = true;
+            foreach (var item in bejegyzes)
+            {
+                if (item.Likeok > 35)
+                {
+                    yn = true;
+                    Console.WriteLine("Van olyan bejegyzés ami több likeot kapott mint 35!");
+                    break;
+                }
+                else
+                {
+                    yn = false;
+                    Console.WriteLine("Nincs olyan bejegyzés ami több likeot kapott mint 35!");
+                    break;
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
             
@@ -105,7 +125,10 @@ namespace TothMarci_BejegyzesProjekt
             TartalomModify();
             ListaT();
             MostLiked();
+            Tobbmint30();
 
+
+            //slattttt!!
             Console.ReadKey();
         }
     }
